@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    
+    <title>JVEO Search Engine</title>
+</head>
+<body>
+<h1 class="text-center"> JVEO Search Engine </h1>
+	<div class="col-lg-12">
+      <style>
+        .form-signin {
+          max-width: 550px;
+          padding: 15px;
+          margin: 0 auto;
+        }    
+      </style>
+
+
+      <div class="container text-center">
+          <form class="form-signin" id="login_form" method="post" action="/app/profile/">
+            {% csrf_token %}
+
+            <br>
+            <input type="text" name="user" class="form-control" placeholder="Github User Name, e.g: nextentrepreneur" value="" required autofocus>
+            <br>
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+          </form>
+      </div>
+      <div class="table-responsive">
+          <table class="table table-bordered table-hover table-striped tablesorter">
+              <thead>
+              <tr>
+                <th class="header"> Username <i class="icon-sort"></i></th>
+                <th class="header"> Blog <i class="icon-sort"></i></th>
+                <th class="header"> Public Repos <i class="icon-sort"></i></th>
+                <th class="header"> Location <i class="icon-sort"></i></th>
+                <th class="header"> Company <i class="icon-sort"></i></th>
+                <th class="header"> Followers <i class="icon-sort"></i></th>
+                <th class="header"> Following <i class="icon-sort"></i></th>
+              </tr>
+          </thead>
+          <tbody>
+          
+          {% for key in data %}
+              <tr>
+                  <td>{{ key.name }}</td>
+                  <td>{{ key.blog }}</td>
+                  <td>{{ key.public_repos }}</td>
+                  <td>{{ key.location }}</td>
+                  <td>{{ key.company }}</td>
+                  <td>{{ key.followers }}</td>
+                  <td>{{ key.following }}</td>
+              </tr>
+          {% endfor %}
+          
+          </tbody>
+          </table>
+      </div>
+    </div>
+</body>
+</html>
